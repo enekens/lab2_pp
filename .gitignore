@@ -39,4 +39,4 @@ build/
 .DS_Store
 
 generated-data/
-results/raw/
+results/
