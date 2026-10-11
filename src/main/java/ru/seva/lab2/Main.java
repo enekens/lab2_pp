@@ -1,10 +1,6 @@
 package ru.seva.lab2;
 
-import ru.seva.lab2.analyzers.ConcurrentHashMapGetPutAnalyzer;
-import ru.seva.lab2.analyzers.HashMapAnalyzer;
-import ru.seva.lab2.analyzers.SequentialAnalyzer;
-import ru.seva.lab2.analyzers.SynchronizedMapAnalyzer;
-import ru.seva.lab2.analyzers.WordAnalyzer;
+import ru.seva.lab2.analyzers.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -22,9 +18,12 @@ public class Main {
         // Список всех реализованных на данный момент анализаторов
         WordAnalyzer[] analyzers = {
                 new SequentialAnalyzer(),
-                new HashMapAnalyzer(),
+                // Игнорируем нерабочий HashMap
                 new SynchronizedMapAnalyzer(),
-                new ConcurrentHashMapGetPutAnalyzer()
+                new ConcurrentHashMapGetPutAnalyzer(),
+                new ConcurrentHashMapMergeAnalyzer(),
+                new LongAdderAnalyzer(),
+                new LocalMapsAnalyzer(),
         };
 
         System.out.println("Начало тестирования...\n");
