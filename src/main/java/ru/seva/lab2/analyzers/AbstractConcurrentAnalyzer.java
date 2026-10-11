@@ -30,7 +30,7 @@ public abstract class AbstractConcurrentAnalyzer implements WordAnalyzer {
             }
 
             for (Future<?> future : futures) {
-                future.get(); // Ожидаем завершения каждого потока
+                future.get();
             }
         }
 

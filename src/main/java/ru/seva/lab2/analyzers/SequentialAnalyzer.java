@@ -20,10 +20,9 @@ public class SequentialAnalyzer implements WordAnalyzer {
             textFiles = paths
                     .filter(p -> p.toString().endsWith(".txt") && p.getFileName().toString().startsWith("text-"))
                     .sorted()
-                    .collect(Collectors.toList());
+                    .toList();
         }
 
-        // Последовательно обрабатываем каждый файл
         for (Path file : textFiles) {
             processFile(file, frequencies);
         }
@@ -47,7 +46,6 @@ public class SequentialAnalyzer implements WordAnalyzer {
     }
 
     private String normalize(String word) {
-        // Приводим к нижнему регистру и оставляем только буквы и цифры
         return word.toLowerCase().replaceAll("[^a-z0-9]", "");
     }
 
