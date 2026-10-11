@@ -39,4 +39,24 @@ public class StatisticsVerifier {
         System.out.println("Результат полностью совпадает с эталоном!");
         return true;
     }
+
+    public static boolean verifySilent(Map<String, Long> actual, Path expectedFile) throws IOException {
+        Map<String, Long> expected = new HashMap<>();
+        try (var lines = Files.lines(expectedFile)) {
+            lines.skip(1).forEach(line -> {
+                String[] parts = line.split(" ");
+                if (parts.length == 2) {
+                    expected.put(parts[0], Long.parseLong(parts[1]));
+                }
+            });
+        }
+        if (actual.size() != expected.size()) return false;
+        for (Map.Entry<String, Long> entry : expected.entrySet()) {
+            Long actualCount = actual.get(entry.getKey());
+            if (actualCount == null || !actualCount.equals(entry.getValue())) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
